@@ -6,7 +6,9 @@ import matplotlib.pyplot as plt
 
 def main():
     a, Delta, N = rps.readParameters()
-    v = newton.newton(0.6, -5)
+    x0 = 0.5
+    y0 = -3
+    v = newton.newton(x0, y0)
     x, y = createCurve.createCurve(v)
     plt.plot(x, y, "b-o")
     plt.grid()

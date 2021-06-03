@@ -22,13 +22,10 @@ def newton(x0, y0):
         J[1,1] = g.gy(x, y)
         fg[0] = f.f(x, y)
         fg[1] = g.g(x, y)
-        det = np.linalg.det(J)
-        if (abs(det) < 1.e-16):
-            break
-        vector = vector - np.linalg.inv(J).dot(fg)
-        diff = vector - old
-        error = diff.dot(diff)
-        #print "count = ", count, ", error = ", error, ", det = ", det
+        diff = np.linalg.solve(J, -fg)
+        vector = diff + old
+        error = np.linalg.norm(diff)
+        #print "count = ", count, ", error = ", error
         if (error < eps):
             break
     return vector

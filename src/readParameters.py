@@ -9,9 +9,12 @@ def readParameters():
     ifile = open(my_file1, 'r')
     strings = ifile.readlines()
     ifile.close()
-    a = float(strings[0].split()[2])
-    Delta = float(strings[1].split()[2])
-    N = int(strings[2].split()[2])
+    a = float(strings[0].split(" = ")[1])
+    Delta = float(strings[1].split(" = ")[1])
+    N = int(strings[2].split(" = ")[1])
+    if N * Delta <= a:
+        print "Make sure that N * Delta > a. "
+        sys.exit(-1)
     return a, Delta, N
 
 def main():
